@@ -31,4 +31,10 @@ public class GlobalExceptionHandler {
     public ErrorResponse handleAccessDenied(AccessDeniedException e) {
         return new ErrorResponse(e.getMessage());
     }
+
+    @ExceptionHandler(ItemNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleItemNotFound(ItemNotFoundException e) {
+        return new ErrorResponse(e.getMessage());
+    }
 }
