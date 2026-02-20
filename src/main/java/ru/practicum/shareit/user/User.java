@@ -1,5 +1,6 @@
 package ru.practicum.shareit.user;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Objects;
@@ -12,9 +13,17 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Override

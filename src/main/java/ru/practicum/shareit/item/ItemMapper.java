@@ -9,22 +9,25 @@ public class ItemMapper {
 
     public static ItemDto toItemDto(Item item) {
         if (item == null) return null;
-        return new ItemDto(
-                item.getId(),
-                item.getName(),
-                item.getDescription(),
-                item.getAvailable()
-        );
+
+        ItemDto dto = new ItemDto();
+        dto.setId(item.getId());
+        dto.setName(item.getName());
+        dto.setDescription(item.getDescription());
+        dto.setAvailable(item.getAvailable());
+        // Поля lastBooking, nextBooking, comments будут установлены в сервисе
+        return dto;
     }
 
     public static Item toItem(ItemDto itemDto, Long ownerId) {
         if (itemDto == null) return null;
-        return new Item(
-                itemDto.getId(),
-                itemDto.getName(),
-                itemDto.getDescription(),
-                itemDto.getAvailable(),
-                ownerId
-        );
+
+        Item item = new Item();
+        item.setId(itemDto.getId());
+        item.setName(itemDto.getName());
+        item.setDescription(itemDto.getDescription());
+        item.setAvailable(itemDto.getAvailable());
+        item.setOwnerId(ownerId);
+        return item;
     }
 }
